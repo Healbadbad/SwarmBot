@@ -66,11 +66,62 @@ class LearningBoid():
 	def getMoveDirection(self):
 		return self.moveDirection
 
+	def getHealth(self):
+		# Scale to percentage instead of raw value?
+		return self.unit.getHitPoints()
+
+	def getArmor(self):
+		# TODO: Include armor from upgrades
+		return self.unit.getType().armor()
+
+	def getSpeed(self):
+		return self.unit.getType().topSpeed()
+
+	def getDamage(self):
+		groundDmg = self.getType().groundWeapon().damageAmount()
+		airDmg = self.getType().airWeapon().damageAmount()
+		return groundDmg
+
+	def getDestroyScore(self):
+		return self.unit.getType().destroyScore()
+
+	def isFlying(self):
+		return self.getType().isFlyer() +1 -1
+
+	def getDefenseType(self):
+		''' returns an array for isorganic, isrobotic, ismechanical'''
+		return self.getType().isOrganic() + 1 - 1, self.getType().isRobotic() + 1 - 1, self.getType().isMechanical() + 1 - 1
+
 	def getFeatures(self):
-		pass
+		''' Return a vector of features for this Unit, for input to the Network '''
+		# Figure out how to include Damage type, size and isOrganic/isRobotic/isMechanical in the network
+		features = []
+
+		pos = self.getPosition()
+		posx = pos.getX()
+		posy = pos.getY()
+		health = self.getHealth()
+		armor = self.getArmor()
+		speed = self.getSpeed()
+		damage = self.getDamage()
+		value = self.getDestroyScore()
+		flying = self.isFlying()
+		isorganic, isrobotic, ismechanical = self.getDefenseType()
+		features = [posx,
+					posy,
+					health,
+					armor,
+					speed,
+					damage,
+					value,
+					flying,
+					isorganic,
+					isrobotic,
+					ismechanical]
+		return features
 
 	def calculateFlockingParameters(self):
-
+		
 		pass
 
 	def getStaticFlockingParameters(self):
