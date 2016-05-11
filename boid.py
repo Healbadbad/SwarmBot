@@ -5,6 +5,8 @@ from math import cos, sin
 client = cybw.BWAPIClient
 Broodwar = cybw.Broodwar
 
+
+
 # Input Data:
 # Self:
 # 	Position?

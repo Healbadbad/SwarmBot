@@ -13,7 +13,7 @@ class SwarmNet():
 	def buildModel(self):
 		self.in_layer = lasagne.layers.InputLayer(shape=(None, 2))
 		self.H1_layer = lasagne.layers.DenseLayer(in_layer, 30, b=lasagne.init.Constant(1.), nonlinearity = lasagne.nonlinearities.linear)
-		self.parameter_layer = lasagne.layers.DenseLayer(in_layer, 5, b=lasagne.init.Constant(1.), nonlinearity = lasagne.nonlinearities.linear)
+		self.parameter_layer = lasagne.layers.DenseLayer(H1_layer, 5, b=lasagne.init.Constant(1.), nonlinearity = lasagne.nonlinearities.linear)
 		self.out_layer = lasagne.layers.DenseLayer(parameter_layer, 1, nonlinearity = lasagne.nonlinearities.linear)
 
 		param_output = lasagne.layers.get_output(self.parameter_layer)

@@ -1,0 +1,660 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Threa",
+				"threading	module"
+			],
+			[
+				"threa",
+				"Thread	class"
+			],
+			[
+				"ini",
+				"init-env"
+			],
+			[
+				"syntax",
+				"syntax-expand"
+			],
+			[
+				"set-",
+				"set-env-var"
+			],
+			[
+				"sty",
+				"syntax-expand"
+			],
+			[
+				"syn",
+				"syntax-expand"
+			],
+			[
+				"lamb",
+				"lambda-exp"
+			],
+			[
+				"window",
+				"windowsize	param"
+			],
+			[
+				"get_",
+				"get_param_fun	statement"
+			],
+			[
+				"par",
+				"param_output"
+			],
+			[
+				"parse",
+				"parse-exp"
+			],
+			[
+				"subst-left-cps",
+				"subst-left-cps-2args"
+			],
+			[
+				"get_all",
+				"get_all_params	function"
+			],
+			[
+				"all",
+				"all_params	statement"
+			],
+			[
+				"get",
+				"get_all_params	function"
+			],
+			[
+				"in",
+				"in_layer	statement"
+			],
+			[
+				"getA",
+				"get_all_param_values	function"
+			],
+			[
+				"call",
+				"call-with-values"
+			],
+			[
+				"cps",
+				"cps-snlist-recur"
+			],
+			[
+				"apply",
+				"apply-continuation"
+			],
+			[
+				"inp",
+				"input_var	statement"
+			],
+			[
+				"ne",
+				"net_output	statement"
+			],
+			[
+				"out",
+				"out_data	statement"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "boid.py",
+			"settings":
+			{
+				"buffer_size": 7738,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "CombatManager.py",
+			"settings":
+			{
+				"buffer_size": 3572,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/rhrt/Documents/bwapi.ini",
+			"settings":
+			{
+				"buffer_size": 5658,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Starbot.py",
+			"settings":
+			{
+				"buffer_size": 11746,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "EvoChamber.py",
+			"settings":
+			{
+				"buffer_size": 288,
+				"line_ending": "Windows",
+				"name": "EvoChamber.py"
+			}
+		},
+		{
+			"contents": "import numpy as np\nimport random\nimport warnings\nwarnings.filterwarnings('ignore', module='lasagne')\n\nclass GAModel():\n	def __init__(self):\n		self.initialized = False\n\n	def buildModel(self):",
+			"file": "GAModel.py",
+			"file_size": 10,
+			"file_write_time": 131073026690786530,
+			"settings":
+			{
+				"buffer_size": 190,
+				"line_ending": "Windows",
+				"name": "GAModel.py"
+			}
+		},
+		{
+			"file": "LearningModel.py",
+			"settings":
+			{
+				"buffer_size": 2746,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "lint",
+		"selected_items":
+		[
+			[
+				"lint",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"replsc",
+				"SublimeREPL: Scheme"
+			],
+			[
+				"join",
+				"Floobits - Join Workspace"
+			],
+			[
+				"floo",
+				"Floobits - Share Directory (Private)"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"keyb",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"anaconda s",
+				"Anaconda: Disable linting on this file"
+			],
+			[
+				"ke",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"repl",
+				"SublimeREPL: Scheme"
+			],
+			[
+				"replsch",
+				"SublimeREPL: Scheme"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/rhrt/Classes/PLC/week0/11.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/15.ss",
+		"/C/Users/rhrt/Classes/PLC/SchemeInterpreter/main.ss",
+		"/C/Users/rhrt/Projects/InternetOfThingsClass/iotdata.py",
+		"/C/Users/rhrt/Projects/InternetOfThingsClass/ShimmerBluetooth.py",
+		"/C/Users/rhrt/Classes/iot/Shimmer_Csharp_API_v0.6/Source/ShimmerCapture/ShimmerBluetooth.cs",
+		"/C/Users/rhrt/Projects/InternetOfThingsClass/liveClassify.py",
+		"/C/Users/rhrt/Projects/SwarmBot/boid.py",
+		"/C/Users/rhrt/Projects/SwarmBot/LearningModel.py",
+		"/C/Users/rhrt/Projects/SwarmBot/Starbot.py",
+		"/C/Users/rhrt/Projects/SwarmBot/CombatManager.py",
+		"/C/Users/rhrt/floobits/welcome.md",
+		"/C/Users/rhrt/Classes/iot/test1.py",
+		"/C/Users/rhrt/Classes/iot/tinyos-shimmer/apps/BtStream/python/BtStreamAccelGyroMag.py",
+		"/C/Users/rhrt/Classes/iot/Shimmer_Csharp_API_v0.6/Source/ShimmerCapture/Shimmer.cs",
+		"/C/Users/rhrt/Projects/cakeNet/XorTest.py",
+		"/C/Users/rhrt/.theanorc",
+		"/F/EFI/BOOT/refind.conf",
+		"/C/Users/rhrt/Classes/PLC/Test2/tcps.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/8.ss",
+		"/C/Users/rhrt/Classes/PLC/Test2/tint.ss",
+		"/C/Users/rhrt/Classes/PLC/Test2/main.ss",
+		"/C/Users/rhrt/Classes/PLC/Test2/e2cps.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/study.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/9.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/16.ss",
+		"/C/Users/rhrt/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/rhrt/Classes/PLC/week0/3.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/4.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/5.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/11b.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/6.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/7.ss",
+		"/C/Users/rhrt/Classes/PLC/week0/10.ss",
+		"/C/Users/rhrt/Classes/iot/tinyos-shimmer/apps/BtStream/python/accelCalRead.py",
+		"/C/Users/rhrt/Projects/InternetOfThingsClass/nnmodel.py",
+		"/C/Users/rhrt/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/rhrt/AppData/Roaming/Sublime Text 3/Packages/SublimeREPL/config/Scheme/Main.sublime-menu",
+		"/C/Users/rhrt/AppData/Roaming/Sublime Text 3/Packages/User/SublimeREPL.sublime-settings",
+		"/F/efi/boot/grubx64.efi"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"draw",
+			"reconnect",
+			"Reconnect",
+			"reconnect",
+			"game",
+			"map",
+			"begin",
+			"set-exp",
+			"apply",
+			"append",
+			"extend-env-rec",
+			"syms",
+			"extended-env",
+			"list",
+			"extended-env",
+			"extended",
+			"caaddr",
+			"let-ex",
+			"framesize",
+			"ser",
+			"wait_for_ack",
+			"writeBy",
+			"void writeby",
+			"writeBytes",
+			"start",
+			"get",
+			"str",
+			"extend-",
+			"prim-pr",
+			"prim-",
+			"closure",
+			"(",
+			"value",
+			"key",
+			"ins",
+			"wait_for_ack",
+			"\""
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "boid.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7738,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								542,
+								542
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 429.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "CombatManager.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3572,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1142,
+								1142
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 484.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/rhrt/Documents/bwapi.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5658,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1246,
+								1246
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "Starbot.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11746,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4830,
+								4830
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1454.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "EvoChamber.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 288,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								159,
+								159
+							]
+						],
+						"settings":
+						{
+							"auto_name": "EvoChamber.py",
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "GAModel.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"auto_name": "GAModel.py",
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "LearningModel.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2746,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								246,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\rhrt\\Classes\\CompPsych\\Project\\Psych.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 50.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
