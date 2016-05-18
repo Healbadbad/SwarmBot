@@ -1,12 +1,12 @@
 import cybw
-from boid import LearningBoid
+from boid import LearningBoid, EnemyProxy
 Broodwar = cybw.Broodwar
 
 class CombatManager():
 	''' A class to manage Allied and enemy units, and 
 		provide Overarching combat goals
 	'''
-	def __init__(self):
+	def __init__(self, params):
 		self.units = []
 		self.buildings = []
 		self.drones = []
@@ -14,13 +14,20 @@ class CombatManager():
 		self.enemyBuildings = []
 		self.targetStrategy = self.enemyCenter
 		self.target = []
+		self.printing = False
+
+		self.params = []
+		temp = params.split(" ")
+		for item in temp:
+			self.params.append(float(item))
+
 		# temp = cybw.Unit().getT
 
 
 	def takeUnit(self, unit):
 		''' Receives a unit, and puts it into the correct group of unit/building
 			and ally/enemy '''
-		print(unit.getInitialType())
+		if self.printing: print(unit.getInitialType())
 		if unit.getPlayer() == Broodwar.self():
 			if unit.getType().isBuilding():
 				self.buildings.append(unit)
@@ -29,12 +36,22 @@ class CombatManager():
 					self.drones.append(unit)
 				else:	
 					# 
-					self.units.append(LearningBoid(unit))
+					exists = False
+					for boid in self.units:
+						if boid.isUnit(unit):
+							exists = True
+					if not exists:
+						self.units.append(LearningBoid(unit))
 		else:
 			if unit.getType().isBuilding():
 				self.enemyBuildings.append(unit)
 			else: 
-				self.enemies.append(unit)
+				exists = False
+				for enemy in self.enemies:
+					if enemy.isUnit(unit):
+						exists = True
+				if not exists:
+					self.enemies.append(EnemyProxy(unit))
 
 	def removeUnit(self, unit):
 		if unit.getPlayer() == Broodwar.self():
@@ -46,14 +63,17 @@ class CombatManager():
 				else:
 					for boid in self.units:
 						if boid.isUnit(unit):
-							print("Commander Removed a unit")
+							if self.printing: print("Commander Removed a unit")
 							self.units.remove(boid)
+							if self.printing: print(len(self.units))
 		else:
 			if unit.getType().isBuilding():
 				self.enemyBuildings.append(unit)
-			else: 
-				self.enemies.remove(unit)
-				print("Commander Removed an enemy unit provide reward?")
+			else:
+				for boid in self.enemies:
+						if boid.isUnit(unit):
+							self.enemies.remove(boid)
+							if self.printing: print("Commander Removed an enemy unit provide reward?")
 
 	def enemyCenter(self):
 		''' a method to calculate the center of all enemies 
@@ -86,10 +106,10 @@ class CombatManager():
 	def boidDiagnostics(self):
 		''' Draw objects to screen to help visualize what each boid is doing '''
 		drawColor = cybw.Colors.Blue
-		visionRange = 130
+		# visionRange = 130
 		for boid in self.units:
 			# if boid.getTargetLocation().isPo
-			Broodwar.drawCircleMap(boid.getPosition(), visionRange, drawColor)
+			Broodwar.drawCircleMap(boid.getPosition(), boid.visionRange, drawColor)
 			try:
 				Broodwar.drawLineMap(boid.getPosition(), boid.getTargetLocation(), drawColor)
 			except:
@@ -107,8 +127,15 @@ class CombatManager():
 	def update(self):
 		''' run the logic for the list of units
 			Give commands to units to engage path planning and flocking '''
+		# print("-==-=-==-=-==-=")
+		# print("numenemies: ", len(self.enemies))
+		for enemy in self.enemies:
+			# print(enemy.getAttackers())
+			enemy.resetAttackers()
+		# print("-==-=-==-=-==-=")
 
 		for boid in self.units:
+			boid.giveGeneticParameters(self.params[0:])
 			# TODO:  Add an algorithm to probabilistically give attack targets
 			for target in self.targetStrategy():
 				boid.setGeneralTarget(target)

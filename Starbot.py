@@ -2,16 +2,16 @@ import cybw
 from CombatManager import CombatManager
 import threading
 from time import sleep
-
+import time
+import sys
 client = cybw.BWAPIClient
 Broodwar = cybw.Broodwar
 
-class Starbot(threading.Thread):
+class Starbot():
 
     def __init__(self):
-        threading.Thread.__init__(self)
-        # self.instance = instance
-
+        self.printing = False
+        self.automatic = True
 
     def reconnect(self):
         while not client.connect():
@@ -75,20 +75,32 @@ class Starbot(threading.Thread):
         return 5
 
     def run(self):
-        print("Connecting...")
+        if self.printing: print("Connecting...")
         self.reconnect()
+
         while True:
-            print("waiting to enter match")
+            if self.printing: print("waiting to enter match")
             while not Broodwar.isInGame():
                 client.update()
                 if not client.isConnected():
-                    print("Reconnecting...")
+                    if self.printing: print("Reconnecting...")
                     self.reconnect()
                 else:
                     from array import array
-                    # print(bytes("MarinesEven.scm",'utf-8'))
+                    # if self.printing: print(bytes("MarinesEven.scm",'utf-8'))
                     # Broodwar.setMap(bytes("C:\\Program Files (x86)\\StarCraft\\Maps\\Setups\\MarinesEven.scm",'utf-8'))
-            print("starting match!")
+            if self.printing: print("starting match!")
+            # input()
+            print("QQQ\n")
+
+            params = input()
+            # params = "-1.185099772903194 3.471395551658338 1.7649202359637872 -0.4635785111165225 2.1450278377039105"
+            
+            # GA Kiting
+            # params = "-16.91585822186874 -9.062535798255029 8.826841575468919 13.134050846598603 5.3999662460067155 107.17660196984967 6.117657532505485 1.6444357636550748"
+            self.startTime = time.time()
+            # sleep(3)
+
             Broodwar.sendText( "Hello world from python!")
             Broodwar.printf( "Hello world from python!")
 
@@ -116,11 +128,11 @@ class Starbot(threading.Thread):
                 Broodwar << "The matchup is " << Broodwar.self().getRace() << " vs " << Broodwar.enemy().getRace() << "\n"
                 # send each worker to the mineral field that is closest to it
                 # reload(Comba)
-                commander = CombatManager()
+                commander = CombatManager(params)
                 units    = Broodwar.self().getUnits()
                 minerals  = Broodwar.getMinerals()
-                print("got", len(units), "units")
-                print("got", len(minerals), "minerals")
+                # print("got", len(units), "units")
+                # print("got", len(minerals), "minerals")
                 for unit in units:
                     if unit.getType().isWorker():
                         closestMineral = None
@@ -133,10 +145,12 @@ class Starbot(threading.Thread):
                     elif unit.getType().isResourceDepot():
                         unit.train(Broodwar.self().getRace().getWorker())
                 events = Broodwar.getEvents()
-                print(len(events))
+                # print(len(events))
             # Broodwar.restartGame()
 
             while Broodwar.isInGame():
+                if time.time() - self.startTime > 5:
+                    Broodwar.restartGame()
                 # Broodwar.restartGame()
 
             # Broodwar.setMap(bytes("MarinesEven.scm",'utf-8'))
@@ -150,10 +164,17 @@ class Starbot(threading.Thread):
                         if e.isWinner():
                             Broodwar << "I won the game\n"
                             commander.signalVictory()
+
                         else:
                             Broodwar << "I lost the game\n"
                             commander.signalDefeat()
-                        Broodwar.restartGame()
+                        index = str(params).split(" ")[0]
+                        #str(index) + ' ' + 
+                        print(str(Broodwar.self().getKillScore() - Broodwar.enemy().getKillScore()))
+                        # Broodwar.pauseGame()
+                        exit()
+                        # print("Client Received")
+                        # Broodwar.restartGame()
 
 
                     elif eventtype == cybw.EventType.SendText:
@@ -227,6 +248,7 @@ class Starbot(threading.Thread):
                                 Broodwar << str(minutes) << ":" << str(seconds) << ": " << e.getUnit().getPlayer().getName() << " morphs a " << e.getUnit().getType() << "\n"
                     
                     elif eventtype == cybw.EventType.UnitShow:
+                        commander.takeUnit(e.getUnit())
                         if not Broodwar.isReplay():
                             pass
                             #Broodwar << e.getUnit() << " spotted at " << e.getUnit().getPosition() << "\n"
@@ -255,3 +277,7 @@ class Starbot(threading.Thread):
                 commander.update()
 
                 client.update()
+
+if __name__ == "__main__":
+    bot = Starbot()
+    bot.run()

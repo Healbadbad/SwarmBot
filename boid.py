@@ -51,7 +51,12 @@ class LearningBoid():
 		self.moveDirection = [0,0]
 		self.flockingAlgorithm = self.flockingV1
 		self.targetLocation = cybw.Position(1000,200)
-		self.decideAttackTarget = self.attackClosestEnemy
+		self.decideAttackTarget = self.attackLowEnemy
+		self.visionRange = 130
+		self.attackState = False
+		self.attackCoooldown = self.getType().groundWeapon().damageCooldown() + 3
+		self.attackFrames = 0
+		self.maxAttackers = 2
 
 	def getPosition(self):
 		return self.unit.getPosition()
@@ -90,6 +95,10 @@ class LearningBoid():
 	def isFlying(self):
 		return self.getType().isFlyer() +1 -1
 
+	def getHitPoints(self):
+		return self.unit.getHitPoints()
+
+
 	def getDefenseType(self):
 		''' returns an array for isorganic, isrobotic, ismechanical'''
 		return self.getType().isOrganic() + 1 - 1, self.getType().isRobotic() + 1 - 1, self.getType().isMechanical() + 1 - 1
@@ -126,18 +135,28 @@ class LearningBoid():
 		
 		pass
 
+	def giveGeneticParameters(self, params):
+		self.params = params
+		self.attackCoooldown = self.getType().groundWeapon().damageCooldown() + int(self.params[6])
+		self.maxAttackers = params[7]
+
+
+	def getGeneticParameters(self):
+		# self.visionRange
+
+		return self.params[5], self.params[0], self.params[1], self.params[2], self.params[3], self.params[4]
+
 	def getStaticFlockingParameters(self):
 		# Vision Range
 		# Separation Force
 		# Alignment Force
 		# Cohesive Force
-		visionRange = 130 # Good?
+		visionRange = self.visionRange # Good?
 		goalForce = 1/20
 		separationForce = 1/500
 		enemySeparationForce = 1
 		alignmentForce = 1/20
 		cohesiveForce = 1/20
-
 		return visionRange, goalForce, separationForce, enemySeparationForce, alignmentForce, cohesiveForce
 
 	def isUnit(self, toCheck):
@@ -241,12 +260,27 @@ class LearningBoid():
 		closest = enemies[0]
 		mindst = 99999999
 		for enemy in enemies:
-			dst = self.unit.getDistance(enemy)
+			dst = self.unit.getDistance(enemy.getUnit())
 			if dst < mindst:
 				mindst = dst
 				closest = enemy
 
 		return closest
+
+	def attackLowEnemy(self, enemies):
+		if len(enemies) < 0:
+			return 'This is bad'
+
+		best = enemies[0]
+		maxScore = 0
+		for enemy in enemies:
+			if enemy.getAttackers() < int(self.maxAttackers):
+				score = 1/((enemy.getHitPoints()/enemy.getUnit().getType().maxHitPoints()) * ((self.unit.getDistance(enemy.getUnit()) +1)/self.visionRange))
+				if score > maxScore:
+					maxScore = score
+					best = enemy
+
+		return best
 
 
 	def update(self, allies, enemies):
@@ -256,7 +290,7 @@ class LearningBoid():
 		'''
 
 		#for now, values are harcoded just to make sure it works
-		values = self.getStaticFlockingParameters()
+		values = self.getGeneticParameters()
 		visionRange = values[0]
 		self.moveDirection = [0,0]
 
@@ -266,7 +300,7 @@ class LearningBoid():
 		nearbyAllies = []
 		
 		for enemy in enemies:
-			if self.unit.getDistance(enemy) < visionRange:
+			if self.unit.getDistance(enemy.getUnit()) < visionRange:
 				flocking = True
 				nearbyEnemies.append(enemy)
 		
@@ -274,19 +308,34 @@ class LearningBoid():
 			if self.unit.getDistance(ally.getUnit()) < visionRange:
 				nearbyAllies.append(ally)
 
-
+		if self.attackFrames > 0:
+			self.attackFrames += -1
 		if flocking:
 			self.flockingAlgorithm(nearbyAllies, nearbyEnemies, values)
 			# TODO: Decide Movement vs Attack
-			if self.unit.getGroundWeaponCooldown() == 0:
+			# print(self.unit.isAttackFrame())
+			# print(self.getType().groundWeapon().damageCooldown())
+			# print(self.unit.getGroundWeaponCooldown())
+			# if self.unit.getGroundWeaponCooldown() == 0:
+			# print(self.attackFrames)
+			# if self.unit.getGroundWeaponCooldown() == 0:
+			# print(self.getType().groundWeapon().maxRange())
+			# print(self.attackFrames)
+			if self.attackFrames == 0:
 				target = self.decideAttackTarget(nearbyEnemies)
-				self.unit.rightClick(target)
+				# print(self.unit.getDistance(target.getUnit()))
+				# if self.unit.getDistance(enemy.getUnit()) < self.getType().groundWeapon().maxRange() + 30:
+				self.unit.rightClick(target.getUnit())
+				target.addAttacker()
 				self.targetLocation = target
+				self.attackFrames = self.attackCoooldown
 				return
-			pos = self.unit.getPosition()
-			move = cybw.Position(pos.getX() + self.moveDirection[0], pos.getY() + self.moveDirection[1])
-			self.unit.rightClick(move)
-			self.targetLocation = move #[pos.getX() + self.moveDirection[0], pos.getY() + self.moveDirection[1]]
+			
+			elif self.attackFrames < self.attackCoooldown/2:
+				pos = self.unit.getPosition()
+				move = cybw.Position(pos.getX() + self.moveDirection[0], pos.getY() + self.moveDirection[1])
+				self.unit.rightClick(move)
+				self.targetLocation = move #[pos.getX() + self.moveDirection[0], pos.getY() + self.moveDirection[1]]
 
 
 		else: # Run A*
@@ -294,3 +343,17 @@ class LearningBoid():
 				self.unit.rightClick(self.generalTarget)
 
 
+class EnemyProxy(LearningBoid):
+
+	def __init__(self, unit):
+		super(EnemyProxy, self).__init__(unit)
+		self.attackers = 0
+
+	def addAttacker(self):
+		self.attackers +=1
+
+	def resetAttackers(self):
+		self.attackers = 0
+
+	def getAttackers(self):
+		return self.attackers
