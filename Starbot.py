@@ -149,9 +149,8 @@ class Starbot():
             # Broodwar.restartGame()
 
             while Broodwar.isInGame():
-                if time.time() - self.startTime > 5:
-                    Broodwar.restartGame()
-                # Broodwar.restartGame()
+                # if time.time() - self.startTime > 5:
+                #     Broodwar.restartGame()
 
             # Broodwar.setMap(bytes("MarinesEven.scm",'utf-8'))
                 Broodwar.setMap(bytes("C:\\Program Files (x86)\\StarCraft\\Maps\\Setups\\MarinesEven.scm",'utf-8'))
